@@ -55,12 +55,15 @@ const App = () => {
     <AppContext.Provider value={AppData}>
       <Router>
         <div className={styles.container}>
-          <Link to="/add">New Item</Link>
           <Switch>
             <Route path="/">
+            <Route exact path="/">
+              <Link className={styles.addButton} to="/add">New Item</Link>
+            </Route>
             <Route path="/add">
               <AddToDo />
             </Route>
+              {toDoList.length === 0 ? <div>Nothing here yet :(</div> : null}
               {toDoList.map((itemData, index) => {
                 return (
                   <ToDoItem key={index} item={itemData}/>
