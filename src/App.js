@@ -5,7 +5,7 @@ import AppContext from './AppContext'
 import AddToDo from './components/AddToDo'
 import ToDoItem from './components/ToDoItem';
 
-import './App.css';
+import styles from './App.module.css';
 
 const App = () => {
   
@@ -33,9 +33,17 @@ const App = () => {
     markItemDone: (event, item) => {
       event.preventDefault()
       const updatedToDoList = [...toDoList]
-      console.log(updatedToDoList.indexOf(item))
-      updatedToDoList[updatedToDoList.indexOf(item)].completed = true
-      updatedToDoList[updatedToDoList.indexOf(item)].completedOn = Date.now()
+
+      if (updatedToDoList[updatedToDoList.indexOf(item)].completed === true) {
+        updatedToDoList[updatedToDoList.indexOf(item)].completed = false
+        updatedToDoList[updatedToDoList.indexOf(item)].completedOn = ''
+      } else {
+        updatedToDoList[updatedToDoList.indexOf(item)].completed = true
+        updatedToDoList[updatedToDoList.indexOf(item)].completedOn = Date.now()
+      }
+
+      
+      
       setToDoList(updatedToDoList)
 
     }
@@ -44,7 +52,7 @@ const App = () => {
   return (
     <AppContext.Provider value={AppData}>
 
-    <div>
+    <div className={styles.container}>
       <AddToDo />
       {toDoList.map((itemData, index) => {
         return (
