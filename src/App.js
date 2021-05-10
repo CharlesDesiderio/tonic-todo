@@ -1,11 +1,12 @@
-import logo from './logo.svg';
+import AddToDo from './components/AddToDo'
 import './App.css';
+import ToDoItem from './components/ToDoItem';
 
 const App = () => {
   return (
     <div>
-      HELLO
-      
+      <AddToDo />
+      <ToDoItem />
     </div>
   )
 }
