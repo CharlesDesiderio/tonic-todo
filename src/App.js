@@ -27,9 +27,17 @@ const App = () => {
     deleteItem: (event, item) => {
       event.preventDefault()
       const newToDoList = [...toDoList]
-      console.log(newToDoList.indexOf(item))
       newToDoList.splice(newToDoList.indexOf(item), 1)
       setToDoList(newToDoList)
+    },
+    markItemDone: (event, item) => {
+      event.preventDefault()
+      const updatedToDoList = [...toDoList]
+      console.log(updatedToDoList.indexOf(item))
+      updatedToDoList[updatedToDoList.indexOf(item)].completed = true
+      updatedToDoList[updatedToDoList.indexOf(item)].completedOn = Date.now()
+      setToDoList(updatedToDoList)
+
     }
   }
 
@@ -40,7 +48,7 @@ const App = () => {
       <AddToDo />
       {toDoList.map((itemData, index) => {
         return (
-            <ToDoItem onClick={AppData.markItemDone} key={index} item={itemData}/>
+            <ToDoItem key={index} item={itemData}/>
         )
       })}
     </div>
