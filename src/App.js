@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
 
@@ -10,8 +10,23 @@ import ToDoItem from './components/ToDoItem';
 import styles from './App.module.css';
 
 const App = () => {
-  
-  const [toDoList, setToDoList] = useState([])
+
+  console.log(window.localStorage.getItem("savedToDoList"))
+
+  useEffect(() => {
+
+    window.localStorage.setItem("savedToDoList", JSON.stringify(toDoList))
+    console.log(JSON.stringify(toDoList))
+    console.log(window.localStorage.getItem("savedToDoList"))
+  })
+
+  let initialState = []
+
+  if (window.localStorage.getItem("savedToDoList")) {
+    initialState = JSON.parse(window.localStorage.getItem("savedToDoList"))
+  }
+
+  const [toDoList, setToDoList] = useState(initialState)
 
   const AppData = {
     handleAddItem: (event, toDoItem) => {
@@ -24,7 +39,7 @@ const App = () => {
           createdOn: Date.now(),
           completedOn: ''
         }]
-      )
+        )
     },
     deleteItem: (event, item) => {
       event.preventDefault()
@@ -43,11 +58,7 @@ const App = () => {
         updatedToDoList[updatedToDoList.indexOf(item)].completed = true
         updatedToDoList[updatedToDoList.indexOf(item)].completedOn = Date.now()
       }
-
-      
-      
       setToDoList(updatedToDoList)
-
     }
   }
 
