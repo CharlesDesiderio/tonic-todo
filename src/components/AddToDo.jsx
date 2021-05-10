@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useState, useContext } from 'react'
 import AppData from '../AppContext'
 
@@ -22,6 +23,7 @@ const AddToDo = () => {
       <label htmlFor="toDoItem"></label>
       <input value={input['toDoItem']} name="toDoItem" type="text" onChange={handleChange} />
       <input type="submit" value="Add Item" />
+      <Link to="/">Home</Link>
       </form>
     </div>
   )

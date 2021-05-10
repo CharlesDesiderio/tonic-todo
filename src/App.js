@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
+
 import AppContext from './AppContext'
 
 import AddToDo from './components/AddToDo'
@@ -51,15 +53,23 @@ const App = () => {
 
   return (
     <AppContext.Provider value={AppData}>
-
-    <div className={styles.container}>
-      <AddToDo />
-      {toDoList.map((itemData, index) => {
-        return (
-            <ToDoItem key={index} item={itemData}/>
-        )
-      })}
-    </div>
+      <Router>
+        <div className={styles.container}>
+          <Link to="/add">New Item</Link>
+          <Switch>
+            <Route path="/">
+            <Route path="/add">
+              <AddToDo />
+            </Route>
+              {toDoList.map((itemData, index) => {
+                return (
+                  <ToDoItem key={index} item={itemData}/>
+                )
+              })}
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </AppContext.Provider>
   )
 }
