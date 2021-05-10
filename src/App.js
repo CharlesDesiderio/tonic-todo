@@ -11,13 +11,8 @@ import styles from './App.module.css';
 
 const App = () => {
 
-  console.log(window.localStorage.getItem("savedToDoList"))
-
   useEffect(() => {
-
     window.localStorage.setItem("savedToDoList", JSON.stringify(toDoList))
-    console.log(JSON.stringify(toDoList))
-    console.log(window.localStorage.getItem("savedToDoList"))
   })
 
   let initialState = []
