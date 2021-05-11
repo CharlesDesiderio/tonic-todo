@@ -8,7 +8,6 @@ const ToDoItem = (props) => {
 
   const createdDate = new Date(props.item.createdOn)
   const completedDate = new Date(props.item.completedOn)
-  
 
   return (
     <div className={styles.toDoItem}>

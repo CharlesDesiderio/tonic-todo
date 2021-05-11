@@ -26,15 +26,15 @@ const App = () => {
   const AppData = {
     handleAddItem: (event, toDoItem) => {
       event.preventDefault()
-      setToDoList((arr) => 
-        [...arr,
+      setToDoList((previousState) => 
+        [...previousState,
         {
           itemName: toDoItem,
           completed: false,
           createdOn: Date.now(),
           completedOn: ''
         }]
-        )
+      )
     },
     deleteItem: (event, item) => {
       event.preventDefault()
